@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.Build.Traversal">
+  <ItemGroup>
+    <!-- Other Project Files to Include in Build -->
+    <ProjectFile Include="**\*.*proj" />
+  </ItemGroup>
+</Project>

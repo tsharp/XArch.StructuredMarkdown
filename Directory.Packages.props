@@ -1,0 +1,49 @@
+<Project>
+  <PropertyGroup>
+      <!-- Enable central package management (https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management) -->
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+    <!-- Enable transitive pinning of package versions -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+
+    <!-- Enable restoring projects with packages.config -->
+    <RestorePackagesConfig>true</RestorePackagesConfig>
+
+    <!-- Enable optimized NuGet restore -->
+    <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' != 'Debug' Or '$(ContinuousIntegrationBuild)' == 'true'">
+    <!-- NerdBank.GitVersioning: If this is not a debug build, it will remove the `-{commitid}` from the version tags  -->
+    <!-- NOTE: It's likely the package push doesn't include the rlease configuration information and therefore will not work -->
+    <PublicRelease>true</PublicRelease>
+  </PropertyGroup>
+
+  <ItemGroup Label="Package Versions used by this repository">
+    <!-- Common Pinned Packages -->
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.7" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="[8.0.0,)" />
+    <PackageVersion Include="YamlDotNet" Version="[16.2.0,)" />
+    <PackageVersion Include="System.Text.Json" Version="[8.0.5,)" />
+
+    <!-- Testing Libraries -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageVersion Include="xunit" Version="2.9.2" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
+    <PackageVersion Include="Snapshooter.Xunit" Version="1.0.1" />
+
+    <!-- Others -->
+    <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="[3.3.4]" />
+    <PackageVersion Include="Microsoft.NETFramework.ReferenceAssemblies" Version="[1.0.3,2.0)" />
+    <PackageVersion Include="Microsoft.SourceLink.GitHub" Version="[1.1.1,2.0)" />
+    <PackageVersion Include="MinVer" Version="[5.0.0,6.0)" />
+    <PackageVersion Include="StyleCop.Analyzers" Version="[1.1.118,2.0)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- To reference a package in all projects, add it to this list. -->
+    <GlobalPackageReference Include="Microsoft.Build.Artifacts" Version="6.1.10" />
+  </ItemGroup>
+</Project>

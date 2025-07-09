@@ -1,0 +1,16 @@
+﻿{
+  "sample": "true",
+  "metadata": [
+    {
+      "name": "Sample Metadata",
+      "description": "This is a sample metadata entry for testing purposes.",
+      "version": "1.0.0",
+      "date": "2023-10-01",
+      "tags": [
+        "sample",
+        "test",
+        "metadata"
+      ]
+    }
+  ]
+}

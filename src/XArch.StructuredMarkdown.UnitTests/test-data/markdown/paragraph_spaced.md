@@ -1,0 +1,3 @@
+<!-- tags: ['paragraph'] -->
+
+Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think, learn, and perform tasks typically requiring human cognition. From simple rule-based systems to advanced machine learning models, AI has become a transformative force across industries, enhancing efficiency, decision-making, and automation. Its applications range from virtual assistants and recommendation systems to autonomous vehicles and medical diagnostics, shaping the future of technology and society.

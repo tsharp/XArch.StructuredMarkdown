@@ -1,0 +1,19 @@
+﻿---
+title: Structured Markdown Test Document
+description: This document is used for testing the Structured Markdown parser and renderer.
+---
+
+<!-- section: named-sub-section, tags: ['external-section'] -->
+<!-- /section -->
+
+# Structured Markdown Test Document <!-- tags: ['heading-1'], content_level: basic -->
+This document is designed to test the functionality of the Structured Markdown parser and renderer. It includes various elements such as headings, lists, code blocks, and links.
+
+<!-- tags: ['paragraph'], content_level: hidden -->
+This is a paragraph that introduces the document. It provides an overview of what to expect in the following sections.
+
+## Headings <!-- tags: ['heading-2'], content_level: paid_basic -->
+This is a section about headings. It includes different levels of headings to test the rendering.
+
+### Heading Level 3 <!-- tags: ['heading-3'], content_level: paid_premium -->
+This is a level 3 heading. It should be rendered as a smaller heading than level 2.

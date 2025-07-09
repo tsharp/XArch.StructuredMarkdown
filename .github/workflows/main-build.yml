@@ -1,0 +1,91 @@
+name: Build & Test
+
+on:
+  workflow_dispatch:
+  
+  schedule:
+    - cron: '30 6 * * *'
+  push:
+    branches: [ "main", "develop", "next", "next-major" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_VERSION: 8.0.205
+  DOTNET_NOLOGO: true
+  # https://www.meziantou.net/publishing-a-nuget-package-following-best-practices-using-github.htm
+  # https://stackoverflow.com/questions/57889719/how-to-push-nuget-package-in-github-actions
+  NuGetDirectory: ${{ github.workspace }}/nuget
+
+jobs:
+
+  # version:
+  #   permissions:
+  #     contents: write
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v4
+  #     with:
+  #       fetch-depth: 0
+
+  #   - name: Version
+  #     uses: huggingface/semver-release-action@latest
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+#    needs: version
+#    strategy:
+#      matrix:
+#        configuration: [Debug, Release]
+
+    runs-on: ubuntu-latest   # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on      
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - name: Restore Packages
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    # Execute all unit tests in the solution
+    - name: Execute unit tests
+      run: dotnet test --no-restore --configuration Release
+
+    # TEST
+    - name: Sign Binaries ...
+      run: echo Test Sign
+
+    - name: Package Binaries ...
+      run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: nuget
+        if-no-files-found: error
+        retention-days: 7
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+
+    - name: Push to NuGet.org
+      if: github.event_name != 'pull_request' # Skip this step for PRs
+      env:
+        NUGET_SECRET: ${{ secrets.NUGET_SECRET }}
+        NUGET_PATH: ${{ env.NuGetDirectory }}
+      run: |
+        dotnet nuget push $NUGET_PATH/*.nupkg \
+          --api-key $NUGET_SECRET \
+          --source https://api.nuget.org/v3/index.json \
+          --skip-duplicate
