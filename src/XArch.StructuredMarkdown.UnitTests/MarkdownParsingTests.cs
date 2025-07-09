@@ -14,7 +14,7 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/only_frontmatter.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
             document.MatchSnapshot();
         }
 
@@ -23,7 +23,7 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/structured_markdown_no_frontmatter.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
             document.MatchSnapshot();
         }
 
@@ -32,8 +32,8 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/structured_markdown_with_frontmatter.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
-            StructuredMarkdownSerializer2
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
+            StructuredMarkdownSerializer
                 .ToMarkdown(document)
                 .MatchSnapshot();
         }
@@ -43,8 +43,8 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/structured_markdown_no_frontmatter.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
-            StructuredMarkdownSerializer2
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
+            StructuredMarkdownSerializer
                 .ToMarkdown(document)
                 .MatchSnapshot();
         }
@@ -54,7 +54,7 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/section.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
             document.MatchSnapshot();
         }
 
@@ -63,7 +63,7 @@ namespace XArch.StructuredMarkdown.UnitTests
         {
             string markdown = File.ReadAllText("./test-data/markdown/paragraph.md");
 
-            StructuredMarkdownDocument document = StructuredMarkdownParser2.Parse(markdown);
+            StructuredMarkdownDocument document = StructuredMarkdownParser.Parse(markdown);
             document.MatchSnapshot();
         }
     }
