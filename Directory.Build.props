@@ -26,6 +26,7 @@
 
   <!-- Build Versioning -->
   <Import Project="$(EnlistmentRoot)\Directory.Version.props" Condition="Exists('$(EnlistmentRoot)\Directory.Version.props')" />
+  <Import Project="$(EnlistmentRoot)\Directory.CodeAnalysis.props" Condition="Exists('$(EnlistmentRoot)\Directory.CodeAnalysis.props')" />
 
   <ItemGroup>
     <SlnGenSolutionItem Include="$(MSBuildThisFileDirectory)Directory.Build.props;
@@ -37,6 +38,7 @@
                         $(MSBuildThisFileDirectory)dirs.proj;
                         $(MSBuildThisFileDirectory)global.json;
                         $(MSBuildThisFileDirectory)nuget.config;
+                        $(MSBuildThisFileDirectory)version.json;
                         $(MSBuildThisFileDirectory)README.md" />
   </ItemGroup>
 </Project>

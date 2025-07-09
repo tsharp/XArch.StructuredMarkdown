@@ -1,2 +1,6 @@
 ﻿<Project>
+    <PropertyGroup>
+        <GitVersionBaseDirectory>$(MSBuildThisFileDirectory)</GitVersionBaseDirectory>
+        <PackageOutputPath>$(EnlistmentRoot)\artifacts\packages</PackageOutputPath>
+    </PropertyGroup>
 </Project>

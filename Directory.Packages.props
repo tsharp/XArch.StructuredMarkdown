@@ -13,12 +13,6 @@
     <RestoreUseStaticGraphEvaluation>true</RestoreUseStaticGraphEvaluation>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)' != 'Debug' Or '$(ContinuousIntegrationBuild)' == 'true'">
-    <!-- NerdBank.GitVersioning: If this is not a debug build, it will remove the `-{commitid}` from the version tags  -->
-    <!-- NOTE: It's likely the package push doesn't include the rlease configuration information and therefore will not work -->
-    <PublicRelease>true</PublicRelease>
-  </PropertyGroup>
-
   <ItemGroup Label="Package Versions used by this repository">
     <!-- Common Pinned Packages -->
     <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.7" />
@@ -44,6 +38,15 @@
 
   <ItemGroup>
     <!-- To reference a package in all projects, add it to this list. -->
-    <GlobalPackageReference Include="Microsoft.Build.Artifacts" Version="6.1.10" />
+    <GlobalPackageReference Include="Microsoft.Build.Artifacts">
+      <PrivateAssets>all</PrivateAssets>
+      <Version>6.1.10</Version>
+    </GlobalPackageReference>
+
+    <!-- Versioning -->
+    <GlobalPackageReference Include="Nerdbank.GitVersioning">
+      <PrivateAssets>all</PrivateAssets>
+      <Version>3.7.115</Version>
+    </GlobalPackageReference>
   </ItemGroup>
 </Project>
