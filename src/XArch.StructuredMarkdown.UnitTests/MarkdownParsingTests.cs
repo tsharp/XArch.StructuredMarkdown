@@ -2,9 +2,6 @@
 
 using Snapshooter.Xunit;
 
-using XArch.StructuredMarkdown.Parsing;
-using XArch.StructuredMarkdown.Serialization;
-
 namespace XArch.StructuredMarkdown.UnitTests
 {
     public class MarkdownParsingTests

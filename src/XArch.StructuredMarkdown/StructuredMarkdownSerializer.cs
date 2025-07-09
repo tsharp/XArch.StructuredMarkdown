@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Text;
 
-using XArch.StructuredMarkdown.Parsing;
-
-namespace XArch.StructuredMarkdown.Serialization
+namespace XArch.StructuredMarkdown
 {
     public static class StructuredMarkdownSerializer
     {

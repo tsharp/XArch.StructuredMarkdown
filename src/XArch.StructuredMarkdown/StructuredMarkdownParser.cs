@@ -1,27 +1,17 @@
-﻿using System;
-using System.IO;
-using System.Text;
-
-using XArch.StructuredMarkdown.Serialization;
-
-namespace XArch.StructuredMarkdown.Parsing
+﻿namespace XArch.StructuredMarkdown
 {
+    using System.IO;
+    using System.Text;
+
+    using XArch.StructuredMarkdown.Parsing;
+    using XArch.StructuredMarkdown.Serialization;
+
     public static class StructuredMarkdownParser
     {
-        public static string NormalizeMarkdown(this string? markdown)
-        {
-            var cleanedMarkdown = markdown?.Trim() ?? string.Empty;
-            cleanedMarkdown = cleanedMarkdown.Replace("\r\n", "\n").Replace("\r", "\n");
-            return cleanedMarkdown.Trim();
-        }
-
         public static StructuredMarkdownDocument Parse(string markdown)
-        {
-            
-            return Parse(new MemoryStream(Encoding.UTF8.GetBytes(markdown.NormalizeMarkdown())));
-        }
+            => Parse(new MemoryStream(Encoding.UTF8.GetBytes(markdown.NormalizeMarkdown())));
 
-        private static StructuredMarkdownDocument Parse(Stream stream)
+        public static StructuredMarkdownDocument Parse(Stream stream)
         {
             PropertyBag? frontmatter = null;
             var root = new DocumentSection();
@@ -44,6 +34,13 @@ namespace XArch.StructuredMarkdown.Parsing
                     Root = root
                 };
             }
+        }
+
+        internal static string NormalizeMarkdown(this string? markdown)
+        {
+            var cleanedMarkdown = markdown?.Trim() ?? string.Empty;
+            cleanedMarkdown = cleanedMarkdown.Replace("\r\n", "\n").Replace("\r", "\n");
+            return cleanedMarkdown.Trim();
         }
 
         // === MAIN DISPATCH ===
