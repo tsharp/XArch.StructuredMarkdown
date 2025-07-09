@@ -11,20 +11,26 @@
   </PropertyGroup>
 
   <!-- ICON -->
-  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\icon.png')">
+  <ItemGroup Condition="Exists('$(EnlistmentRoot)\icon.png')">
     <None Include="$(EnlistmentRoot)\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\icon.png')">
     <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <!-- README -->
-  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\README.md')">
+  <ItemGroup Condition="Exists('$(EnlistmentRoot)\README.md')">
     <None Include="$(EnlistmentRoot)\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\README.md')">
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- LICENSE -->
-  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\LICENSE')">
+  <ItemGroup Condition="'$(PackageLicenseExpression)' == '' and Exists('$(EnlistmentRoot)\LICENSE')">
     <None Include="$(EnlistmentRoot)\LICENSE" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(PackageLicenseExpression)' == '' and Exists('$(EnlistmentRoot)\LICENSE')">
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 </Project>
