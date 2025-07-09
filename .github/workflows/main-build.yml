@@ -81,6 +81,7 @@ jobs:
 
     - name: Push to NuGet.org
       if: github.event_name != 'pull_request' # Skip this step for PRs
+      continue-on-error: true
       env:
         NUGET_SECRET: ${{ secrets.NUGET_SECRET }}
         NUGET_PATH: ${{ env.NuGetDirectory }}

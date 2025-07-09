@@ -405,3 +405,6 @@ artifacts/
 
 # msbuild binary logs
 *.binlog
+
+# Package Locks
+packages.lock.json
