@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project>
   <!-- Nuget Package Configuration -->
   <PropertyGroup>
     <RepositoryUrl>https://github.com/tsharp/XArch.StructuredMarkdown</RepositoryUrl>
@@ -10,7 +9,7 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 
-    <PackageReadmeFile>$(EnlistmentRoot)\README.md</PackageReadmeFile>
-    <PackageIcon>$(EnlistmentRoot)\icon.png</PackageIcon>
+    <PackageReadmeFile Condition="Exists('$(EnlistmentRoot)\README.md')">$(EnlistmentRoot)\README.md</PackageReadmeFile>
+    <PackageIcon Condition="Exists('$(EnlistmentRoot)\icon.png')">$(EnlistmentRoot)\icon.png</PackageIcon>
   </PropertyGroup>
 </Project>

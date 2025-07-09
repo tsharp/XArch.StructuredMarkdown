@@ -25,6 +25,7 @@
   </PropertyGroup>
 
   <!-- Build Versioning -->
+  <Import Project="$(EnlistmentRoot)\Directory.Package.props" Condition="Exists('$(EnlistmentRoot)\Directory.Package.props')" />
   <Import Project="$(EnlistmentRoot)\Directory.Version.props" Condition="Exists('$(EnlistmentRoot)\Directory.Version.props')" />
   <Import Project="$(EnlistmentRoot)\Directory.CodeAnalysis.props" Condition="Exists('$(EnlistmentRoot)\Directory.CodeAnalysis.props')" />
 
@@ -32,6 +33,7 @@
     <SlnGenSolutionItem Include="$(MSBuildThisFileDirectory)Directory.Build.props;
                         $(MSBuildThisFileDirectory)Directory.Build.rsp;
                         $(MSBuildThisFileDirectory)Directory.Build.targets;
+                        $(MSBuildThisFileDirectory)Directory.Package.props;
                         $(MSBuildThisFileDirectory)Directory.Packages.props;
                         $(MSBuildThisFileDirectory)Directory.Version.props;
                         $(MSBuildThisFileDirectory)Directory.CodeAnalysis.props;
