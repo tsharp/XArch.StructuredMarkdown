@@ -8,8 +8,23 @@
     <Copyright>© Travis Sharp. All rights reserved.</Copyright>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
 
-    <PackageReadmeFile Condition="Exists('$(EnlistmentRoot)\README.md')">$(EnlistmentRoot)\README.md</PackageReadmeFile>
-    <PackageIcon Condition="Exists('$(EnlistmentRoot)\icon.png')">$(EnlistmentRoot)\icon.png</PackageIcon>
+  <!-- ICON -->
+  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\icon.png')">
+    <None Include="$(EnlistmentRoot)\icon.png" Pack="true" PackagePath="\"/>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <!-- README -->
+  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\README.md')">
+    <None Include="$(EnlistmentRoot)\README.md" Pack="true" PackagePath="\"/>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <!-- LICENSE -->
+  <PropertyGroup Condition="Exists('$(EnlistmentRoot)\LICENSE')">
+    <None Include="$(EnlistmentRoot)\LICENSE" Pack="true" PackagePath="\"/>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 </Project>
